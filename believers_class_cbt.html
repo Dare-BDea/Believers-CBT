@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Believers Class CBT – Lessons 6–11</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f6f4ef;--card:#fff;--tx:#1d2433;--mu:#667085;--bd:#dcd7cb;--ac:#2f5d8a;--acb:#e4edf6;--ok:#1f7a3f;--okb:#e0f3e6;--no:#b3261e;--nob:#fbe4e2;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181e;--card:#1f242d;--tx:#eceef2;--mu:#9aa3b2;--bd:#343b48;--ac:#7fb0e0;--acb:#26364a;--ok:#6fd08f;--okb:#1d3a29;--no:#ff8a80;--nob:#432523;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15181e;--card:#1f242d;--tx:#eceef2;--mu:#9aa3b2;--bd:#343b48;--ac:#7fb0e0;--acb:#26364a;--ok:#6fd08f;--okb:#1d3a29;--no:#ff8a80;--nob:#432523;color-scheme:dark}
+*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--tx);font:16px/1.5 Georgia,"Times New Roman",serif}
+.w{max-width:760px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px;margin-bottom:14px}
+h1{font-size:1.6rem;margin:.2em 0}h2{font-size:1.15rem;margin:0 0 .6em}p{margin:.4em 0}.mu{color:var(--mu);font-size:.92rem}
+input[type=text]{width:100%;padding:12px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit;margin:8px 0 14px}
+button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;padding:10px 16px}
+button.p{background:var(--ac);border-color:var(--ac);color:var(--bg);font-weight:bold}button:disabled{opacity:.4;cursor:default}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--bg);padding:10px 0}
+.tm{font:bold 1.15rem ui-monospace,Menlo,monospace;padding:6px 12px;border-radius:8px;background:var(--acb);color:var(--ac)}.tm.lo{background:var(--nob);color:var(--no)}
+.bar{height:6px;background:var(--bd);border-radius:4px;overflow:hidden;margin-bottom:12px}.bar i{display:block;height:100%;background:var(--ac)}
+.opt{display:flex;gap:10px;width:100%;text-align:left;margin:8px 0;padding:12px 14px;align-items:flex-start}
+.opt b{min-width:1.4em;color:var(--mu)}.opt.s{border-color:var(--ac);background:var(--acb)}.opt.ok{border-color:var(--ok);background:var(--okb)}.opt.no{border-color:var(--no);background:var(--nob)}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px}.grid button{padding:8px 0;font-size:.9rem}
+.grid .a{background:var(--acb);border-color:var(--ac)}.grid .c{outline:2px solid var(--tx)}.grid .ok{background:var(--okb);border-color:var(--ok)}.grid .no{background:var(--nob);border-color:var(--no)}
+.sc{font-size:3rem;font-weight:bold;text-align:center;margin:.1em 0}.hide{display:none}.ex{margin-top:10px;font-size:.92rem}
+.tbl{width:100%;border-collapse:collapse;font-size:.88rem}.tbl th,.tbl td{padding:8px 6px;border-bottom:1px solid var(--bd);text-align:left}.tw{overflow-x:auto}textarea{width:100%;min-height:80px;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:12px ui-monospace,Menlo,monospace}.lk{background:none;border:0;color:var(--ac);text-decoration:underline;padding:6px 0}
+</style></head><body><div class="w">
+
+<div id="start" class="card">
+<h1>Believers Class CBT</h1>
+<p class="mu">Lessons 6–11 · 30 questions · 30 minutes</p>
+<p>Choose one answer per question. You can move back and forth and change answers before you submit. The test submits automatically when time runs out.</p>
+<label for="nm">Your name</label>
+<input id="nm" type="text" placeholder="Enter your full name" autocomplete="name">
+<button class="p" id="go">Start test</button>
+<p><button class="lk" id="td">Teacher dashboard</button></p>
+</div>
+
+<div id="test" class="hide">
+<div class="top"><span id="prog" class="mu"></span><span class="tm" id="tm">30:00</span><button id="sub">Submit</button></div>
+<div class="bar"><i id="pb"></i></div>
+<div class="card"><h2 id="q"></h2><div id="os"></div>
+<div class="nav"><button id="pv">← Previous</button><button id="nx" class="p">Next →</button></div></div>
+<div class="card"><p class="mu">Question navigator (shaded = answered)</p><div class="grid" id="gr"></div></div>
+</div>
+
+<div id="dash" class="hide"><div class="card"><h2>Teacher board</h2>
+<div id="pw"><p class="mu">Enter the teacher PIN to view results.</p><input id="pin" type="password" placeholder="Teacher PIN" style="width:100%;padding:12px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit;margin:8px 0"><button class="p" id="pg">View results</button> <button id="pb2">Back</button></div>
+<div id="bd" class="hide"><p id="ds" class="mu"></p>
+<div class="nav" style="justify-content:flex-start;margin:8px 0"><button id="dr">Refresh</button><button id="dl">Download CSV</button><button id="db2">Back</button></div>
+<div class="tw"><table class="tbl"><thead><tr><th>#</th><th>Name</th><th>Score</th><th>%</th><th>Started</th><th>Submitted</th><th>Time used</th></tr></thead><tbody id="tb"></tbody></table></div></div></div></div>
+
+<div id="res" class="hide">
+<div class="card"><p class="mu" id="who"></p><div class="sc" id="sc"></div><p id="msg" style="text-align:center"></p>
+<p id="tk" class="mu" style="text-align:center"></p><p id="sv" class="mu" style="text-align:center"></p>
+<div class="nav" style="justify-content:center"><button id="rv" class="p">Review answers</button></div></div>
+<div id="rev"></div>
+</div>
+
+</div>
+<script>
+const API="https://script.google.com/macros/s/AKfycbyG4xPIYAPoi001FDHM8dgV_Wvz1MOVCJdmkEOKcVptf-kWKcExZoSOt8upPn5GMJI6/exec"; // see setup steps
+const MIN=30,L="abcde";
+const Q=[
+["Which of the following is correct?",["The Old testament has a total of 27 books.","The New testament has a total of 39 books.","The Old testament has a total of 39 books while the new testament has a total of 27 books.","The Bible has a total of 67 books.","The Old testament has a total of 27 books while the new testament has a total of 39 books."],2],
+["The verse: “and God said let us make man in our image, after our likeness” can be found in:",["Gen. 11:26","2 Cor. 13:14","1 John 5:7","Gen. 1:26","Gen. 1:4"],3],
+["Which of the following fact is NOT true about Satan?",["He is the author of sickness.","He was not responsible for the first fall of man.","He was sent packing from Heaven.","He was an arch-angel.","He loved music."],1],
+["We can know and experience the following from the Bible except",["Way of salvation.","Knowledge of Christ.","Happiness of believers.","None of the above.","All of the above."],3],
+["2 Timothy 3:16 says:",["And be not conformed to this world: but be ye transformed by the renewing of your mind, that ye may prove what is that good, and acceptable, and perfect, will of God.","For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.","All scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness.","For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind.","None of the above."],2],
+["Which of the following is an essential requirement for quiet time?",["Prayer mat.","Bottle of water.","Phone for emergencies.","Prayer lists.","Spiritual broom."],3],
+["We can study the Bible through any of the following methods except",["By chapters.","By online research.","By books.","By paragraphs.","By not opening the Bible."],4],
+["The following are examples of how God speaks to us except:",["By dreams","Through a fortune teller.","The Still small voice.","Audible voice.","C and D"],1],
+["Which of these statements is true?",["Your mind is always God’s mind.","God answers morning prayers faster than any other time of the day.","Effective quiet time help us create the right reaction to trials and temptations that befall us.","We can instantly begin our quiet time with our requests and Lamentations.","It is important to eat well so we have enough strength to observe a longer quiet time with God."],2],
+["“As new born babes, desire the sincere milk of the word that ye may grow thereby” can be found in which Bible verse?",["1 Peter 2:2","1 Peter 2:8","1 Peter 3:5","1 Peter 2:9","1 Peter 4:2"],0],
+["Which of the following gives a right concept to baptism?",["Baptism is only for Babies.","Baptism is optional for believers.","Water sprinkling is an acceptable form of Baptism.","Repentance towards God is a condition for Baptism.","Baptism by immersion is scary."],3],
+["The following are types of baptism every believer must undergo except one.",["Water baptism.","Fire baptism.","Holy Spirit baptism.","Baptism into Christ and his body","All of the above."],1],
+["In whose name should water baptism be carried out?",["God the Father.","Minister in charge.","Daddy G.O.","God the Son and God the Holy Spirit.","A and D."],4],
+["Which is an important significance of Holy Spirit baptism?",["Holy Spirit is the president instead of being just a resident in believers.","Impartation of divine power.","It’s a foundation to operating with the gifts of the Holy Spirit.","Boldness for Service","All of the above."],4],
+["Who should receive Baptism among the following?",["Every obedient child of God.","Saints.","All Sinners.","Baby Christians.","Everyone."],0],
+["Complete the verse: “he that winneth a soul is _____________”",["A Christian.","Heaven worthy.","Wise.","Exalted.","God’s friend."],2],
+["The verse above can be found in:",["Matthew 4:19","Luke 9:53","Ecclesiastes 3:1","Proverbs 11:30","Psalm 23:5"],3],
+["Which of the following is NOT a misconception towards evangelism?",["We must have a physical Bible in our hands every time.","You can not preach to someone by yourself.","Evangelism should only be carried out on Saturdays, so that Sunday service will be full.","Without money or material things, evangelism can not be effective.","The purpose of evangelism is to lead individuals to Christ."],4],
+["Evangelism is urgent!",["I somewhat disagree.","Not exactly urgent but as long as we are alive.","I strongly agree.","I neither agree nor disagree.","God sees the willingness of my heart towards this."],2],
+["We are only charged to evangelize….",["When it is convenient.","Everywhere and every time.","Where our brethren can see us preaching.","When we need something from God.","In safe environments or urban spaces."],1],
+["All of the following are things that make for effective personal evangelism except one.",["Condemnation.","Wisdom.","Humility.","Compassion.","God’s word."],0],
+["Christian conduct entails a set of kingdom rules and regulations in the Bible, set up for Christians to model after.",["True","False"],0],
+["A Christian should be found exhibiting or operating in at least one of the following:",["Unforgiveness","Malice","Gossip","Panacea","None of the above"],4],
+["Which of the following ungodly conduct best describes the state of showing indifference to another’s suffering or causing a person to suffer?",["Panacea","Strife","Cruelty","Anger","Mercilessness"],2],
+["______________ is referred to as “a destructive spirit”.",["Anger","Gossip","Envy","Jealousy","Worry"],0],
+["The training of our minds and bodies to produce self control, orderliness, obedience and capacity for cooperation is called _______________",["Righteousness","Conduct","Reverence","Discipline","Commitment"],3],
+["These are characteristics of the human tongue described in The Bible except:",["The tongue is a fire and world of iniquity.","The tongue can not be tamed by man.","The tongue can boast of great things.","None of the above.","All of the above."],4],
+["Should any of the characteristics listed above be exhibited in the life of a disciplined Christian?",["Yes","Sometimes","No"],2],
+["The Bible verse: “Let your moderation be known unto all men. The Lord is at hand” can be found in",["1 Corinthians","Philippians","James","Proverbs","2 Corinthians"],1],
+["Which of the following should not be exhibited or portrayed by a disciplined Christian?",["Debt","Rebellion","Disrespect","Clubbing","All of the above."],4]
+];
+const $=id=>document.getElementById(id);
+let ans,cur,deadline,t0,timer,done,rows=[],bt,pending=[],flushing=false,onRes=false;
+const ALL=["start","test","res","dash"];
+const show=id=>{onRes=id==="res";ALL.forEach(x=>$(x).classList.toggle("hide",x!==id))};
+const fmt=s=>String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
+const tm=t=>new Date(t).toLocaleString([],{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit",second:"2-digit"});
+const dur=ms=>Math.floor(ms/60000)+"m "+String(Math.round(ms/1000)%60).padStart(2,"0")+"s";
+try{pending=JSON.parse(localStorage.getItem("cbt_q")||"[]")}catch(e){}
+const persist=()=>{try{localStorage.setItem("cbt_q",JSON.stringify(pending))}catch(e){}};
+async function send(rec){
+ if(API.indexOf("PASTE")===0)throw new Error("not configured");
+ const r=await fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(rec)});
+ const j=await r.json();return j.ok===true;
+}
+function status(){if(!onRes)return;
+ $("sv").textContent=API.indexOf("PASTE")===0?"Platform not connected yet (teacher: set the web app URL).":pending.length?"Submitting your result… please keep this page open.":"✓ Your result has been submitted to your teacher."}
+async function flush(){
+ if(flushing)return;flushing=true;
+ try{for(const rec of pending.slice()){let ok=false;try{ok=await send(rec)}catch(e){}
+  if(ok){pending=pending.filter(x=>x.id!==rec.id);persist()}else break}}
+ finally{flushing=false}
+ status();if(pending.length)setTimeout(flush,5000);
+}
+window.addEventListener("online",flush);
+window.addEventListener("beforeunload",e=>{if(pending.length){e.preventDefault();e.returnValue=""}});
+if(pending.length)flush();
+function start(){
+ if(!$("nm").value.trim()){$("nm").focus();return}
+ ans=Array(Q.length).fill(null);cur=0;done=false;t0=Date.now();deadline=t0+MIN*60000;show("test");render();tick();
+ clearInterval(timer);timer=setInterval(tick,1000);
+}
+function tick(){const left=Math.max(0,Math.round((deadline-Date.now())/1000));
+ $("tm").textContent=fmt(left);$("tm").classList.toggle("lo",left<=300);if(left<=0&&!done)finish(true)}
+function render(){
+ const q=Q[cur];$("q").textContent=(cur+1)+". "+q[0];
+ $("prog").textContent="Question "+(cur+1)+" of "+Q.length;
+ $("pb").style.width=(ans.filter(a=>a!==null).length/Q.length*100)+"%";
+ $("os").innerHTML="";
+ q[1].forEach((t,i)=>{const b=document.createElement("button");b.className="opt"+(ans[cur]===i?" s":"");
+  b.innerHTML="<b>"+L[i].toUpperCase()+".</b><span></span>";b.lastChild.textContent=t;
+  b.onclick=()=>{ans[cur]=i;render()};$("os").appendChild(b)});
+ $("pv").disabled=cur===0;$("nx").disabled=cur===Q.length-1;
+ $("gr").innerHTML="";
+ Q.forEach((_,i)=>{const b=document.createElement("button");b.textContent=i+1;
+  b.className=(ans[i]!==null?"a ":"")+(i===cur?"c":"");b.onclick=()=>{cur=i;render()};$("gr").appendChild(b)});
+}
+function finish(auto){
+ clearInterval(timer);done=true;const end=Math.min(Date.now(),deadline);
+ const n=ans.filter((a,i)=>a===Q[i][2]).length,p=Math.round(n/Q.length*100);
+ const id=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);
+ const rec={id:id,name:$("nm").value.trim(),score:n,total:Q.length,pct:p,start:t0,end:end,auto:!!auto};
+ pending.push(rec);persist();
+ $("who").textContent=rec.name+" · Lessons 6–11";
+ $("sc").textContent=n+" / "+Q.length+" ("+p+"%)";
+ $("msg").textContent=p>=70?"Well done!":p>=50?"Good effort — review the lessons.":"Please revisit the lessons.";
+ $("tk").textContent="Started "+tm(t0)+" · Submitted "+tm(end)+" · Time used "+dur(end-t0);
+ $("rev").innerHTML="";$("rev").classList.add("hide");show("res");status();flush();
+}
+function review(){
+ const r=$("rev");r.innerHTML="";r.classList.remove("hide");
+ Q.forEach((q,i)=>{
+  const c=document.createElement("div");c.className="card";
+  const h=document.createElement("h2");h.textContent=(i+1)+". "+q[0];c.appendChild(h);
+  q[1].forEach((t,j)=>{const d=document.createElement("div");
+   d.className="opt "+(j===q[2]?"ok":ans[i]===j?"no":"");
+   d.style.borderRadius="10px";d.style.border="1px solid var(--bd)";
+   d.innerHTML="<b>"+L[j].toUpperCase()+".</b><span></span>";d.lastChild.textContent=t+(j===q[2]?"  ✓ correct":ans[i]===j?"  ✗ your answer":"");c.appendChild(d)});
+  if(ans[i]===null){const p=document.createElement("p");p.className="mu";p.textContent="Not answered.";c.appendChild(p)}
+  r.appendChild(c)});
+ r.scrollIntoView({behavior:"smooth"});
+}
+function draw(){
+ const tb=$("tb");tb.innerHTML="";
+ rows.sort((a,b)=>b.end-a.end).forEach((r,i)=>{const tr=document.createElement("tr");
+  [i+1,r.name+(r.auto?" (time up)":""),r.score+"/"+r.total,r.pct+"%",tm(r.start),tm(r.end),dur(r.end-r.start)].forEach(v=>{const td=document.createElement("td");td.textContent=v;tr.appendChild(td)});
+  tb.appendChild(tr)});
+}
+async function board(){
+ $("ds").textContent="Loading…";
+ try{const r=await fetch(API+"?action=board&pin="+encodeURIComponent($("pin").value));const j=await r.json();
+  if(!j.ok){$("ds").textContent="";$("pw").classList.remove("hide");$("bd").classList.add("hide");clearInterval(bt);alert(j.error==="pin"?"Wrong PIN.":"Could not load results.");return}
+  rows=j.rows;$("pw").classList.add("hide");$("bd").classList.remove("hide");draw();
+  $("ds").textContent=rows.length+" submission(s) · updated "+new Date().toLocaleTimeString()+" · refreshes automatically";
+  clearInterval(bt);bt=setInterval(board,15000);
+ }catch(e){$("ds").textContent="Connection problem — retrying…"}
+}
+function leaveBoard(){clearInterval(bt);$("pin").value="";$("pw").classList.remove("hide");$("bd").classList.add("hide");show("start")}
+function csv(){
+ const q=v=>{v=String(v);if(/^[=+\-@]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};
+ const l=[["Name","Score","Total","Percent","Started","Submitted","Minutes used","Time up"].map(q).join(",")];
+ rows.forEach(r=>l.push([r.name,r.score,r.total,r.pct,new Date(r.start).toLocaleString(),new Date(r.end).toLocaleString(),((r.end-r.start)/60000).toFixed(1),r.auto?"yes":"no"].map(q).join(",")));
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([l.join("\n")],{type:"text/csv"}));a.download="believers_class_results.csv";a.click();
+}
+$("go").onclick=start;$("nm").onkeydown=e=>{if(e.key==="Enter")start()};
+$("pv").onclick=()=>{cur--;render()};$("nx").onclick=()=>{cur++;render()};
+let armed=false;
+$("sub").onclick=()=>{const u=ans.filter(a=>a===null).length;
+ if(armed){armed=false;$("sub").textContent="Submit";finish(false);return}
+ armed=true;$("sub").textContent=u?u+" unanswered – tap to confirm":"Tap again to confirm";
+ setTimeout(()=>{armed=false;if(!done)$("sub").textContent="Submit"},4000)};
+$("rv").onclick=review;$("td").onclick=()=>show("dash");$("pg").onclick=board;$("pin").onkeydown=e=>{if(e.key==="Enter")board()};
+$("pb2").onclick=leaveBoard;$("db2").onclick=leaveBoard;$("dr").onclick=board;$("dl").onclick=csv;
+</script></body></html>
